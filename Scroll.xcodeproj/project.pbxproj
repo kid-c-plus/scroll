@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0B43DB1E1719F60099321D /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D0B43D71E1719F60099321D /* Quicksand-Regular.ttf */; };
+		1D0B43DC1E1719F60099321D /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D0B43D81E1719F60099321D /* Quicksand-Medium.ttf */; };
+		1D0B43DD1E1719F60099321D /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D0B43D91E1719F60099321D /* Quicksand-Light.ttf */; };
+		1D0B43DE1E1719F60099321D /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D0B43DA1E1719F60099321D /* Quicksand-Bold.ttf */; };
 		1D11EF6A1E01D00E000FD93B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EF691E01D00E000FD93B /* AppDelegate.swift */; };
 		1D11EF6C1E01D00E000FD93B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EF6B1E01D00E000FD93B /* ViewController.swift */; };
 		1D11EF6F1E01D00E000FD93B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D11EF6D1E01D00E000FD93B /* Main.storyboard */; };
@@ -14,6 +18,8 @@
 		1D11EF741E01D00E000FD93B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D11EF721E01D00E000FD93B /* LaunchScreen.storyboard */; };
 		1D11EF7F1E01D00E000FD93B /* ScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EF7E1E01D00E000FD93B /* ScrollTests.swift */; };
 		1D11EF8A1E01D00E000FD93B /* ScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EF891E01D00E000FD93B /* ScrollUITests.swift */; };
+		1D77999C1E368DC100355C2A /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77999B1E368DC100355C2A /* WordCollectionViewCell.swift */; };
+		1D9F75AC1E07312F00585759 /* ScrollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9F75AB1E07312F00585759 /* ScrollTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D0B43D71E1719F60099321D /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		1D0B43D81E1719F60099321D /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		1D0B43D91E1719F60099321D /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		1D0B43DA1E1719F60099321D /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		1D11EF661E01D00E000FD93B /* Scroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D11EF691E01D00E000FD93B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D11EF6B1E01D00E000FD93B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +57,8 @@
 		1D11EF851E01D00E000FD93B /* ScrollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D11EF891E01D00E000FD93B /* ScrollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollUITests.swift; sourceTree = "<group>"; };
 		1D11EF8B1E01D00E000FD93B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D77999B1E368DC100355C2A /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
+		1D9F75AB1E07312F00585759 /* ScrollTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,9 +86,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D0B43CC1E1719280099321D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1D0B43D71E1719F60099321D /* Quicksand-Regular.ttf */,
+				1D0B43D81E1719F60099321D /* Quicksand-Medium.ttf */,
+				1D0B43D91E1719F60099321D /* Quicksand-Light.ttf */,
+				1D0B43DA1E1719F60099321D /* Quicksand-Bold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		1D11EF5D1E01D00D000FD93B = {
 			isa = PBXGroup;
 			children = (
+				1D0B43CC1E1719280099321D /* Resources */,
 				1D11EF681E01D00E000FD93B /* Scroll */,
 				1D11EF7D1E01D00E000FD93B /* ScrollTests */,
 				1D11EF881E01D00E000FD93B /* ScrollUITests */,
@@ -103,6 +127,8 @@
 				1D11EF701E01D00E000FD93B /* Assets.xcassets */,
 				1D11EF721E01D00E000FD93B /* LaunchScreen.storyboard */,
 				1D11EF751E01D00E000FD93B /* Info.plist */,
+				1D9F75AB1E07312F00585759 /* ScrollTableViewCell.swift */,
+				1D77999B1E368DC100355C2A /* WordCollectionViewCell.swift */,
 			);
 			path = Scroll;
 			sourceTree = "<group>";
@@ -193,6 +219,7 @@
 				TargetAttributes = {
 					1D11EF651E01D00D000FD93B = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 79YW9442NG;
 						ProvisioningStyle = Automatic;
 					};
 					1D11EF791E01D00E000FD93B = {
@@ -232,9 +259,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0B43DE1E1719F60099321D /* Quicksand-Bold.ttf in Resources */,
 				1D11EF741E01D00E000FD93B /* LaunchScreen.storyboard in Resources */,
 				1D11EF711E01D00E000FD93B /* Assets.xcassets in Resources */,
 				1D11EF6F1E01D00E000FD93B /* Main.storyboard in Resources */,
+				1D0B43DD1E1719F60099321D /* Quicksand-Light.ttf in Resources */,
+				1D0B43DB1E1719F60099321D /* Quicksand-Regular.ttf in Resources */,
+				1D0B43DC1E1719F60099321D /* Quicksand-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +290,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9F75AC1E07312F00585759 /* ScrollTableViewCell.swift in Sources */,
 				1D11EF6C1E01D00E000FD93B /* ViewController.swift in Sources */,
+				1D77999C1E368DC100355C2A /* WordCollectionViewCell.swift in Sources */,
 				1D11EF6A1E01D00E000FD93B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,11 +445,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 79YW9442NG;
 				INFOPLIST_FILE = Scroll/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rli.Scroll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -424,11 +460,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 79YW9442NG;
 				INFOPLIST_FILE = Scroll/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rli.Scroll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -505,6 +544,7 @@
 				1D11EF901E01D00E000FD93B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D11EF911E01D00E000FD93B /* Build configuration list for PBXNativeTarget "ScrollTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +553,7 @@
 				1D11EF931E01D00E000FD93B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D11EF941E01D00E000FD93B /* Build configuration list for PBXNativeTarget "ScrollUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +562,7 @@
 				1D11EF961E01D00E000FD93B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
