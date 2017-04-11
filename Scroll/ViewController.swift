@@ -30,7 +30,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var images: [UIImage] = [] // Array of preassembled animated words, indexed by length (space is at index 0)
     
-    var cellModel: NSCache<NSNumber, ScrollTableViewCell> = NSCache<NSNumber, ScrollTableViewCell>() // Cache of premade scroll cells
+    var tableViewCellModel: NSCache<NSNumber, ScrollTableViewCell> = NSCache<NSNumber, ScrollTableViewCell>() // Cache of premade scroll cells
+    
+    var collectionViewCellModel: NSCache<NSNumber, NSCache<NSNumber, UICollectionViewCell>> = NSCache<NSNumber, NSCache<NSNumber, UICollectionViewCell>>() // Cache of premade word cells
+    
+    var cellWidths: [CGSize]  = [] // Cached cell sizes
     
     var numScrolls: Int = 0 // Number of scrolls in existence (may not all have been created yet)
     
@@ -39,21 +43,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: - Overridden UIViewController methods
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         for wordLength in 0...12 {
             images.append(generateWordImage(wordLength))
+            cellWidths.append(CGSize(width: (wordLength > 0 ?
+                (Double(wordLength) * 8 * WORDIMAGESCALINGFACTOR) : (8 * WORDIMAGESCALINGFACTOR)), height: 8 * WORDIMAGESCALINGFACTOR))
         }
-        cellModel.countLimit = 400 // Maximum number of scrolls to hold in cache - when this is exceeded, the oldest scrolls will be deleted and must be regenerated
+        tableViewCellModel.countLimit = 400 // Maximum number of scrolls to hold in cache - when this is exceeded, the oldest scrolls will be deleted and must be regenerated
+        collectionViewCellModel.countLimit = 8000
         generateScrollCells(40, startIndex: 0)
     }
     
     // MARK: - Public memory management methods
     
     // Empties NSCache containing cells - called when app enters background
-    func clearCellCache() {
-        cellModel.removeAllObjects()
+    func clearCaches() {
+        tableViewCellModel.removeAllObjects()
+        collectionViewCellModel.removeAllObjects()
     }
     
     // Reloads all currently existing cells into NSCache - called when app reenters foreground
@@ -116,7 +123,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             return UIImage.animatedImage(with: animatedImages, duration: 4.0)!
          } else {
-            return #imageLiteral(resourceName: "space")
+        return #imageLiteral(resourceName: "space")
         }
     }
     
@@ -126,7 +133,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         numScrolls += numCells
         for i in 0...numCells - 1 {
             let scrollViewCell = tableView.dequeueReusableCell(withIdentifier: "scroll") as! ScrollTableViewCell
-            cellModel.setObject(scrollViewCell, forKey: NSNumber(integerLiteral: start + i))
+            tableViewCellModel.setObject(scrollViewCell, forKey: NSNumber(integerLiteral: start + i))
             textModel.append(generateScrollTextPattern(scrollViewCell.getCollectionViewWidth()))
             profileModel.append(Int(getRandom() * Float(NUMPROFILES)) + 1)
             scrollViewCell.setCollectionViewTag(start + i)
@@ -169,11 +176,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if (isLoading && indexPath.row == numScrolls - 1) {
             return tableView.dequeueReusableCell(withIdentifier: "loading")!
         } else {
-            if let scrollViewCell = cellModel.object(forKey: NSNumber(integerLiteral: indexPath.row)) {
+            if let scrollViewCell = tableViewCellModel.object(forKey: NSNumber(value: indexPath.row)) {
                 return scrollViewCell
             } else {
                 let scrollViewCell = tableView.dequeueReusableCell(withIdentifier: "scroll") as! ScrollTableViewCell
-                cellModel.setObject(scrollViewCell, forKey: NSNumber(integerLiteral: indexPath.row))
+                tableViewCellModel.setObject(scrollViewCell, forKey: NSNumber(value: indexPath.row))
                 return scrollViewCell
             }
         }
@@ -216,7 +223,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let scrollViewCell = cell as? ScrollTableViewCell {
             scrollViewCell.assignProfile(self.profileModel[indexPath.row])
-            //scrollViewCell.setCollectionViewTag(indexPath.row)
         }
     }
     
@@ -256,14 +262,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Creates new collection view cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let wordCell = collectionView.dequeueReusableCell(withReuseIdentifier: "wordCell", for: indexPath)
-        // The following two lines decrease scrolling lag by rasterizing (storing as a local bitmap prior to display) the collection view cell images
-        wordCell.layer.shouldRasterize = true
-        wordCell.layer.rasterizationScale = UIScreen.main.scale
-        let wordCellImageView = UIImageView(image: images[textModel[collectionView.tag][indexPath.row]])
-        //wordCellImageView.startAnimating()
-        wordCell.contentView.addSubview(wordCellImageView)
-        return wordCell
+        if let scrollCellCache = collectionViewCellModel.object(forKey: NSNumber(value: collectionView.tag)) {
+            if let wordCell = scrollCellCache.object(forKey: NSNumber(value: indexPath.row)) {
+                return wordCell
+            } else {
+                let wordCell = collectionView.dequeueReusableCell(withReuseIdentifier: "wordCell", for: indexPath)
+                // The following two lines decrease scrolling lag by rasterizing (storing as a local bitmap prior to display) the collection view cell images
+                wordCell.layer.shouldRasterize = true
+                wordCell.layer.rasterizationScale = UIScreen.main.scale
+                let wordCellImageView = UIImageView(image: images[textModel[collectionView.tag][indexPath.row]])
+                wordCell.contentView.addSubview(wordCellImageView)
+                scrollCellCache.setObject(wordCell, forKey: NSNumber(value: indexPath.row))
+                return wordCell
+            }
+        } else {
+            let scrollCellCache = NSCache<NSNumber, UICollectionViewCell>()
+            let wordCell = collectionView.dequeueReusableCell(withReuseIdentifier: "wordCell", for: indexPath)
+            // The following two lines decrease scrolling lag by rasterizing (storing as a local bitmap prior to display) the collection view cell images
+            wordCell.layer.shouldRasterize = true
+            wordCell.layer.rasterizationScale = UIScreen.main.scale
+            let wordCellImageView = UIImageView(image: images[textModel[collectionView.tag][indexPath.row]])
+            wordCell.contentView.addSubview(wordCellImageView)
+            scrollCellCache.setObject(wordCell, forKey: NSNumber(value: indexPath.row))
+            collectionViewCellModel.setObject(scrollCellCache, forKey: NSNumber(value: collectionView.tag))
+            return wordCell
+        }
     }
     
     // Provides number of words and spaces in given scroll
@@ -281,8 +304,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Informs flow layout of each cell's size in each collection view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (textModel[collectionView.tag][indexPath.row] > 0 ?
-            (Double(textModel[collectionView.tag][indexPath.row]) * 8 * WORDIMAGESCALINGFACTOR) : (8 * WORDIMAGESCALINGFACTOR)), height: 8 * WORDIMAGESCALINGFACTOR)
+        return cellWidths[textModel[collectionView.tag][indexPath.row]]
     }
     
     // Informs flow layout of spacing to insert between successive rows in collection view

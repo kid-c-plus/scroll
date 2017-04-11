@@ -18,7 +18,6 @@
 		1D11EF741E01D00E000FD93B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D11EF721E01D00E000FD93B /* LaunchScreen.storyboard */; };
 		1D11EF7F1E01D00E000FD93B /* ScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EF7E1E01D00E000FD93B /* ScrollTests.swift */; };
 		1D11EF8A1E01D00E000FD93B /* ScrollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D11EF891E01D00E000FD93B /* ScrollUITests.swift */; };
-		1D77999C1E368DC100355C2A /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D77999B1E368DC100355C2A /* WordCollectionViewCell.swift */; };
 		1D9F75AC1E07312F00585759 /* ScrollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9F75AB1E07312F00585759 /* ScrollTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +56,6 @@
 		1D11EF851E01D00E000FD93B /* ScrollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D11EF891E01D00E000FD93B /* ScrollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollUITests.swift; sourceTree = "<group>"; };
 		1D11EF8B1E01D00E000FD93B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D77999B1E368DC100355C2A /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D9F75AB1E07312F00585759 /* ScrollTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +126,6 @@
 				1D11EF721E01D00E000FD93B /* LaunchScreen.storyboard */,
 				1D11EF751E01D00E000FD93B /* Info.plist */,
 				1D9F75AB1E07312F00585759 /* ScrollTableViewCell.swift */,
-				1D77999B1E368DC100355C2A /* WordCollectionViewCell.swift */,
 			);
 			path = Scroll;
 			sourceTree = "<group>";
@@ -292,7 +289,6 @@
 			files = (
 				1D9F75AC1E07312F00585759 /* ScrollTableViewCell.swift in Sources */,
 				1D11EF6C1E01D00E000FD93B /* ViewController.swift in Sources */,
-				1D77999C1E368DC100355C2A /* WordCollectionViewCell.swift in Sources */,
 				1D11EF6A1E01D00E000FD93B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
